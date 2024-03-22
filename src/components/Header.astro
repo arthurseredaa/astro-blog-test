@@ -1,0 +1,27 @@
+---
+type Link = {
+  text: string
+  href: string
+}
+
+const links: Link[] = [
+  {text: 'Home', href: '/'},
+  {text: 'About', href: '/about'}
+]
+---
+<header>
+  {links.map(({text, href}) => (
+    <a href={href}>{text}</a>
+  ))}
+</header>
+
+<style>
+    header {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 20px;
+      background-color: #f3f3f3;
+    }
+</style>
