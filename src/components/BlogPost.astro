@@ -1,0 +1,32 @@
+---
+const { url, title, publicationDate, description } = Astro.props
+---
+<div class="container">
+    <p class="title"><a href={url}>{title}</a></p>
+    <span>{publicationDate}</span>
+    <p class="description">{description}</p>
+</div>
+
+<style>
+  .container {
+    border-radius: 15px;
+    border: 2px dashed gainsboro;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
+  .title {
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  .date {
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 1px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+</style>

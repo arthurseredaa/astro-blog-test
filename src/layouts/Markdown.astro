@@ -1,0 +1,30 @@
+---
+import Navigation from "./Navigation.astro";
+const { frontmatter } = Astro.props
+---
+<Navigation title={frontmatter.title}>
+    <div class="content_wrapper">
+        <h1>{frontmatter.title}</h1>
+        <p>Written by: {frontmatter.author}</p>
+        <p>{frontmatter.pubDate.toString().slice(0,10)}</p>
+        <div class="tags">{frontmatter.tags.map((tag) => <span class="tag">{tag}</span>)}</div>
+        <slot />
+    </div>
+</Navigation>
+
+<style>
+  .tags {
+    margin-bottom: 100px;
+  }
+  .tag {
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 15px;
+    border: 2px dashed rgba(0,0,0,0.5)
+  }
+  .content_wrapper {
+    max-width: 80ch;
+    width: 100%;
+    margin: 50px auto;
+  }
+</style>
