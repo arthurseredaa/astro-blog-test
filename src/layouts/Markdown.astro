@@ -1,12 +1,14 @@
 ---
 import Navigation from "./Navigation.astro";
+import {parseStringDate} from '../utils/parseStringDate'
+
 const { frontmatter } = Astro.props
 ---
 <Navigation title={frontmatter.title}>
     <div class="content_wrapper">
         <h1>{frontmatter.title}</h1>
         <p>Written by: {frontmatter.author}</p>
-        <p>{frontmatter.pubDate.toString().slice(0,10)}</p>
+        <p>{parseStringDate(frontmatter.pubDate)}</p>
         <div class="tags">{frontmatter.tags.map((tag) => <span class="tag">{tag}</span>)}</div>
         <slot />
     </div>

@@ -1,9 +1,11 @@
 ---
+import { parseStringDate } from '../utils/parseStringDate'
+
 const { url, title, publicationDate, description } = Astro.props
 ---
 <div class="container">
     <p class="title"><a href={url}>{title}</a></p>
-    <span>{publicationDate}</span>
+    <span>{parseStringDate(publicationDate)}</span>
     <p class="description">{description}</p>
 </div>
 
