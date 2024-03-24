@@ -1,17 +1,50 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Navigation from "../layouts/Navigation.astro";
+
+const pageTitle = 'About Me'
+const identity = {
+    firstName: "Arthur",
+    country: "Ukraine",
+    occupation: "Software engineer",
+    hobbies: ["reading", "basketball", "workout"],
+};
+
+const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
+
+const isHappy = true;
+const isFinished = false;
+const daysGoal = 3;
+const skillColor = "#00BCD4";
+const fontWeight = 'bold'
+const textCase = 'uppercase'
 ---
-<Layout title="Hello, world">
-    <h1>About Me</h1>
+
+<Navigation title={pageTitle}>
+    <h1>{pageTitle}</h1>
     <h2>... and my new Astro site!</h2>
 
     <p>I am working through Astro's introductory tutorial. This is the second page on my website, and it's the first one I built myself!</p>
 
     <p>This site will update as I complete more of the tutorial, so keep checking back and see how my journey is going!</p>
-</Layout>
+    <h2>Here are a few facts about me:</h2>
+    <ul>
+        <li>My name is {identity.firstName}.</li>
+        <li>I live in {identity.country} and I work as a {identity.occupation}.</li>
+        <li>My hobbies are:{identity.hobbies.map((item, index, array) => index === array.length - 1 ? ` ${item}.` : ` ${item},`)}</li>
+    </ul>
+    <p>My skills are:</p>
+    <ul>
+        {skills.map((skill) => <li class="skill">{skill}</li>)}
+    </ul>
+    {isHappy && <p>I am happy to be learning Astro!</p>}
+    {isFinished && <p>I finished this tutorial!</p>}
+    {daysGoal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>}
+</Navigation>
 
-<style>
-  * {
-    color: white
-  }
+<style define:vars={{ skillColor, fontWeight, textCase }}>
+    .skill {
+        color: var(--skillColor);
+        font-weight: var(--fontWeight);
+        text-transform: var(--textCase);
+    }
 </style>

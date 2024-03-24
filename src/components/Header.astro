@@ -6,13 +6,26 @@ type Link = {
 
 const links: Link[] = [
   {text: 'Home', href: '/'},
-  {text: 'About', href: '/about'}
+  {text: 'About', href: '/about'},
+  {text: 'Blog', href: '/blog'},
 ]
 ---
 <header>
-  {links.map(({text, href}) => (
-    <a href={href}>{text}</a>
-  ))}
+  <div class="links-wrapper">
+    {links.map(({text, href}) => (
+            <a href={href}>{text}</a>
+    ))}
+  </div>
+  <div class="hamburger">
+      <span class="line"></span>
+      <span class="line"></span>
+      <span class="line"></span>
+  </div>
+  <div class="mobile-menu">
+    {links.map(({text, href}) => (
+            <a href={href}>{text}</a>
+    ))}
+  </div>
 </header>
 
 <style>
@@ -22,6 +35,71 @@ const links: Link[] = [
       top: 0;
       left: 0;
       padding: 20px;
-      background-color: #f3f3f3;
+      background-color: #616161;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .links-wrapper {
+      display: flex;
+      gap: 20px;
+    }
+
+    .hamburger {
+      padding-right: 20px;
+      cursor: pointer;
+      display: none;
+    }
+
+    .hamburger .line {
+      display: block;
+      width: 25px;
+      height: 2px;
+      margin-bottom: 5px;
+      background-color: #ff9776;
+    }
+
+    .mobile-menu {
+      display: none;
+      background-color: rgba(0,0,0, 30%);
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      box-sizing: border-box;
+      height: 300px;
+      transform: translateY(245px);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding-bottom: 60px;
+    }
+
+    .mobile-menu-visible {
+      animation: .2s __slideInUp linear forwards;
+    }
+
+    @media (max-width: 900px) {
+      .links-wrapper {
+        display: none;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .mobile-menu {
+        display: flex;
+      }
+    }
+
+    @keyframes __slideInUp {
+      from {
+        transform: translateY(245px);
+      }
+      to {
+        transform: translateY(0);
+      }
     }
 </style>
