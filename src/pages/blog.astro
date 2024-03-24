@@ -1,6 +1,7 @@
 ---
-import Navigation from "../layouts/Navigation.astro";
-import BlogPost from "../components/BlogPost.astro";
+import Navigation from "@layouts/Navigation.astro";
+import BlogPost from "@components/BlogPost.astro";
+import Greeting from "@components/Greetings";
 const allPosts = await Astro.glob('./posts/*.md')
 ---
 <Navigation title="Blog page">
@@ -11,6 +12,7 @@ const allPosts = await Astro.glob('./posts/*.md')
           <BlogPost title={frontmatter.title} url={post.url} publicationDate={frontmatter.pubDate} description={frontmatter.description} />
         )}
     </div>
+    <Greeting client:load messages={["Hi", "Hello", "Howdy", "Hey there"]} />
 </Navigation>
 
 <style>

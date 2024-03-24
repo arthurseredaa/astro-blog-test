@@ -1,4 +1,5 @@
 ---
+import ThemeIcon from "./ThemeIcon.astro";
 type Link = {
   text: string
   href: string
@@ -16,6 +17,7 @@ const links: Link[] = [
     {links.map(({text, href}) => (
             <a href={href}>{text}</a>
     ))}
+      <ThemeIcon />
   </div>
   <div class="hamburger">
       <span class="line"></span>
